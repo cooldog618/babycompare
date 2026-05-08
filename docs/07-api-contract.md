@@ -24,3 +24,5 @@
 
 ## Web usage example
 - `/search?q=유모차&sort=relevance&page=1` -> `GET /products/search?query=유모차&sort=relevance&page=1&limit=20`
+
+- Web detail page uses `/products/[id]` -> `GET /products/:id`.

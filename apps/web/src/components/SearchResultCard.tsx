@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ProductListItem } from '@babycompare/shared';
 import { formatPrice, formatRating, formatReviewCount } from '../lib/format';
+import { productDetailPath } from '../lib/routes';
 
 export function SearchResultCard({ item }: { item: ProductListItem }) {
   return (
@@ -20,7 +21,7 @@ export function SearchResultCard({ item }: { item: ProductListItem }) {
         </div>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
-        <Link href={`/products/${item.id}`} className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
+        <Link href={productDetailPath(item.id)} className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
           상세보기
         </Link>
         <a

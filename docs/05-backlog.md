@@ -20,4 +20,4 @@
 
 | BC-FIX-001 | M1 | Platform | seed 실행 오류 수정 | P0 | Done | S | seed 실행 안정화 |
 
-| BC-MVP-014 | M2 | Web | 상품 상세 프론트 페이지 구현 | P1 | Todo | M | `/products/[id]`에서 API 연동 상세 화면 제공 |
+| BC-MVP-014 | M2 | Web | 상품 상세 프론트 페이지 구현 | P1 | Done | M | `/products/[id]`에서 API 연동 상세 화면 제공 |
