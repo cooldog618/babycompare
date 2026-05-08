@@ -23,6 +23,12 @@ export class ProductsRepository {
     return { items, total };
   }
 
+  async findVisibleById(id: string): Promise<Product | null> {
+    return this.prisma.product.findFirst({
+      where: { id, isVisible: true }
+    });
+  }
+
   async upsertNaverProduct(item: Product): Promise<Product> {
     const existingByUrl = await this.prisma.product.findUnique({ where: { productUrl: item.productUrl } });
     if (existingByUrl) {

@@ -1,4 +1,4 @@
-import { type Product, type SearchProductsResponse } from '@babycompare/shared';
+import { type Product, type ProductDetailResponse, type SearchProductsResponse } from '@babycompare/shared';
 import { type Product as DbProduct } from '@prisma/client';
 
 export function mapProductEntity(entity: DbProduct): Product {
@@ -7,6 +7,15 @@ export function mapProductEntity(entity: DbProduct): Product {
     lastSyncedAt: entity.lastSyncedAt?.toISOString() ?? null,
     createdAt: entity.createdAt.toISOString(),
     updatedAt: entity.updatedAt.toISOString()
+  };
+}
+
+export function mapProductDetailResponse(entity: DbProduct): ProductDetailResponse {
+  return {
+    item: mapProductEntity(entity),
+    meta: {
+      source: 'DB'
+    }
   };
 }
 

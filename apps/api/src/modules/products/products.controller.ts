@@ -1,5 +1,5 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { type SearchProductsResponse } from '@babycompare/shared';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import { type ProductDetailResponse, type SearchProductsResponse } from '@babycompare/shared';
 import { parseSearchProductsQuery } from './products.dto';
 import { ProductsService } from './products.service';
 
@@ -10,5 +10,10 @@ export class ProductsController {
   @Get('search')
   search(@Query() query: Record<string, unknown>): Promise<SearchProductsResponse> {
     return this.productsService.search(parseSearchProductsQuery(query));
+  }
+
+  @Get(':id')
+  getProductDetail(@Param('id') id: string): Promise<ProductDetailResponse> {
+    return this.productsService.getProductDetail(id);
   }
 }

@@ -7,3 +7,4 @@ export type ProductDetail = Product;
 export interface SearchProductsQuery { query: string; sort?: SearchSort; page?: number; limit?: number; }
 export type SearchProductsMeta = { query: string; sort: SearchSort; page: number; limit: number; total: number; source: ProductSearchSource; fallback: boolean; fallbackReason?: string; };
 export interface SearchProductsResponse { items: ProductListItem[]; meta: SearchProductsMeta; }
+export type ProductDetailResponse = { item: ProductDetail; meta: { source: 'DB' } };
