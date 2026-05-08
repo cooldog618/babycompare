@@ -1,0 +1,10 @@
+node_modules
+.pnpm-store
+.env
+.env.local
+.next
+dist
+coverage
+*.log
+apps/api/dev.db
+apps/api/dev.db-journal
