@@ -8,7 +8,7 @@
 | BC-FIX-002 | M1 | Platform | `@babycompare/shared` workspace resolve 오류 수정 | P0 | Done | S | clean install 직후 `pnpm typecheck/build/test`에서 shared import 오류가 재현되지 않음 |
 | BC-MVP-003 | M1 | API | 상품 검색 API 구현 | P0 | Done | L | 검색/정렬/페이징 동작 |
 | BC-MVP-004 | M1 | API | 상품 상세 API 구현 | P1 | Done | M | `GET /products/:id` 상세 데이터 반환 |
-| BC-MVP-005 | M1 | Web | 홈/검색 페이지 구현 | P0 | Todo | M | 검색 입력 및 결과 표시 |
+| BC-MVP-005 | M1 | Web | 홈/검색 페이지 구현 | P0 | Done | M | 홈/검색 화면 및 API 연동 완료 |
 | BC-MVP-006 | M1 | Web | 상품 카드 구현 | P1 | Todo | S | 가격/브랜드/링크 표시 |
 | BC-MVP-007 | M1 | Web | 비교 localStorage hook 구현 | P1 | Todo | M | 최대 5개 저장/해제 |
 | BC-MVP-008 | M1 | Web | 비교 페이지 구현 | P1 | Todo | M | 비교 테이블 표시 |
@@ -19,3 +19,5 @@
 | BC-MVP-013 | M2 | Docs | README 실행 가이드 정리 | P1 | Todo | S | 운영 기준 문서화 |
 
 | BC-FIX-001 | M1 | Platform | seed 실행 오류 수정 | P0 | Done | S | seed 실행 안정화 |
+
+| BC-MVP-014 | M2 | Web | 상품 상세 프론트 페이지 구현 | P1 | Todo | M | `/products/[id]`에서 API 연동 상세 화면 제공 |
