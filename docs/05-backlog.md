@@ -2,7 +2,8 @@
 | ID | Milestone | Area | Title | Priority | Status | Effort | Acceptance Criteria |
 |---|---|---|---|---|---|---|---|
 | BC-SETUP-001 | M0 | Platform | 프로젝트 부트스트랩 | P0 | Done | M | 모노레포/문서/최소 앱 동작 구성 |
-| BC-MVP-001 | M1 | API/DB | DB Product 모델 및 demo seed 확장 | P0 | Todo | M | Product 스키마 확장 및 seed 데이터 제공 |
+| BC-SETUP-002 | M0 | Platform | 로컬 검증 세팅 보정 | P0 | Done | S | lint/typecheck/test/build가 로컬에서 실행 가능 |
+| BC-MVP-001 | M1 | API/DB | DB Product 모델 및 demo seed 확장 | P0 | Done | M | Product 스키마 확장 및 seed 데이터 제공 |
 | BC-MVP-002 | M1 | API | 네이버 쇼핑 API 클라이언트 구현 | P0 | Todo | M | 키 기반 호출 + 에러 처리 |
 | BC-MVP-003 | M1 | API | 상품 검색 API 구현 | P0 | Todo | L | 검색/정렬/페이징 동작 |
 | BC-MVP-004 | M1 | API | 상품 상세 API 구현 | P1 | Todo | M | 상세 데이터 반환 |

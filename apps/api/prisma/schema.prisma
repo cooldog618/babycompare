@@ -7,18 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ProductSource {
+  NAVER
+  DEMO
+  MANUAL
+}
+
 model Product {
-  id          String   @id @default(cuid())
-  source      String   @default("demo")
-  sourceId    String?
-  title       String
-  brand       String?
-  category    String
-  imageUrl    String?
-  price       Int
-  originalUrl String?
-  rating      Float?
-  reviewCount Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String        @id @default(cuid())
+  source       ProductSource
+  externalId   String?
+  title        String
+  brand        String?
+  maker        String?
+  category1    String?
+  category2    String?
+  category3    String?
+  category4    String?
+  categoryPath String?
+  price        Int
+  imageUrl     String?
+  productUrl   String        @unique
+  seller       String?
+  rating       Float?
+  reviewCount  Int?
+  description  String?
+  isVisible    Boolean       @default(true)
+  lastSyncedAt DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@unique([source, externalId])
+}
+
+model SearchLog {
+  id          String        @id @default(cuid())
+  query       String
+  sort        String
+  resultCount Int
+  source      ProductSource
+  createdAt   DateTime      @default(now())
 }
