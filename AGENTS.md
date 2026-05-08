@@ -5,7 +5,8 @@
 2. `docs/01-mvp-scope.md`
 3. `docs/02-architecture.md`
 4. `docs/03-decisions.md`
-5. `docs/10-codex-handoff.md`
+5. `docs/05-backlog.md`
+6. `docs/10-codex-handoff.md`
 
 ## 필수 규칙
 - Node.js 22.x, pnpm 기반으로만 작업합니다.
