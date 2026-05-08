@@ -26,7 +26,7 @@ export function ProductDetail({ item }: { item: ProductDetailType }) {
           <p className="mt-1 text-xs text-slate-500">업데이트: {item.lastSyncedAt || item.updatedAt}</p>
 
           <div className="mt-5">
-            <ProductDetailActions productUrl={item.productUrl} />
+            <ProductDetailActions product={item} />
           </div>
         </div>
       </div>
