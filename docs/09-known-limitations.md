@@ -4,6 +4,8 @@
 - 비교 기능 미구현
 - 검색/상세 API 미구현
 - 정식 admin 미구현
-- 초기 Codex 환경에서 의존성 설치 및 일부 검증 실행이 실패했던 이력이 있었고, 로컬 환경 기준으로 검증 세팅을 보정함
 
 - `/products/search` 공개 API는 아직 미구현이며, 네이버 API 키가 있어도 아직 공개 검색 API와 연결되지 않음
+
+## Resolved
+- BC-FIX-002: `apps/api`의 `@babycompare/shared` workspace resolve 오류를 수정해 clean install 이후에도 shared import가 안정적으로 해석되도록 정리함.

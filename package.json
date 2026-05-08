@@ -7,10 +7,10 @@
     "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:api\"",
     "dev:web": "pnpm --filter @babycompare/web dev",
     "dev:api": "pnpm --filter @babycompare/api dev",
-    "build": "pnpm -r build",
+    "build": "pnpm -r --sort build",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "typecheck": "pnpm --filter @babycompare/shared build && pnpm -r typecheck",
+    "test": "pnpm --filter @babycompare/shared build && pnpm -r test",
     "db:migrate": "pnpm --filter @babycompare/api prisma migrate dev --name init",
     "db:seed": "pnpm --filter @babycompare/api prisma db seed",
     "db:studio": "pnpm --filter @babycompare/api prisma studio"

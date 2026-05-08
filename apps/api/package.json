@@ -13,6 +13,7 @@
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
+    "@babycompare/shared": "workspace:*",
     "@nestjs/common": "^11.1.3",
     "@nestjs/core": "^11.1.3",
     "@nestjs/platform-express": "^11.1.3",
