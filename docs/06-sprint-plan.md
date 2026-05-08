@@ -15,5 +15,5 @@
 | ID | Task | Status |
 |---|---|---|
 | BC-MVP-001 | DB Product 모델 및 demo seed 확장 | Done |
-| BC-MVP-002 | 네이버 쇼핑 API 클라이언트 구현 | Todo |
+| BC-MVP-002 | 네이버 쇼핑 API 클라이언트 구현 | Done |
 | BC-MVP-003 | 상품 검색 API 구현 | Todo |

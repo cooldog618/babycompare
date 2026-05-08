@@ -1,6 +1,6 @@
 # 10 Codex Handoff
 ## 현재 상태
-모노레포/문서/기본 web+api+shared 골격 완료. `/health` 동작, Product 모델 MVP 기준 확정, DEMO seed 데이터(카테고리별) 확장 완료.
+모노레포/문서/기본 web+api+shared 골격 완료. `/health` 동작, Product 모델 MVP 기준 확정, DEMO seed 데이터(카테고리별) 확장 완료, BC-MVP-002(네이버 쇼핑 API 클라이언트) 완료.
 
 ## 실행 방법
 1. `nvm use && corepack enable && pnpm install`
@@ -17,8 +17,13 @@
 Node 22, pnpm workspace, Prisma+SQLite, 크롤링 미구현, 정식 admin MVP 제외
 
 ## 다음 추천 작업
-1) BC-MVP-002
-2) BC-MVP-003
+1) BC-MVP-003
+2) BC-MVP-004
 
 ## 주의사항
 시크릿을 `NEXT_PUBLIC_*`에 넣지 말 것. 네이버 API는 백엔드에서만 호출. 검색 API와 네이버 API 연동은 아직 구현되지 않음.
+
+
+## 참고 이력
+- seed 오류 수정 이력: 초기 Codex 환경에서 seed/검증 실패 이력이 있었으며, 로컬 검증 세팅 보정(BC-SETUP-002)으로 정리됨.
+- Codex 검증 상태: 이번 작업에서 `pnpm test/typecheck/lint/build`를 실행했고 결과는 작업 로그 기준으로 확인 필요. 실패 시 로컬 재검증 권장.

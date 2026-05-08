@@ -19,3 +19,10 @@
 - `seller`, `rating`, `reviewCount`, `description`
 - `isVisible`, `lastSyncedAt`, `createdAt`, `updatedAt`
 - 제약: `@@unique([source, externalId])`, `@unique(productUrl)`
+
+
+## Internal (Not Public API)
+- Naver client module (`apps/api/src/modules/naver`) implemented for server-side use only.
+- Config: `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET`, `NAVER_API_TIMEOUT_MS`(default 5000), `USE_DEMO_DATA`.
+- Supports sort mapping (`relevance/sim`, `price_asc/asc`, `price_desc/dsc`), paging to `display/start`, title sanitize/decode, and Product-shape mapping.
+- Public API remains `/health` only; `/products/search` and `/products/:id` are still Planned.
