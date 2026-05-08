@@ -11,6 +11,12 @@
 - Response: `{ items: Product[], meta: { query, sort, page, limit, total, source, fallback, fallbackReason? } }`
 - Source strategy: `USE_DEMO_DATA=true` => demo DB fallback, otherwise Naver configured then Naver-first with DB upsert, failure => fallback
 
+### GET /products/:id
+- Status: Implemented
+- Path params: `id` (required)
+- Validation: empty/whitespace id -> 400, too long id -> 400
+- Behavior: `isVisible=true` 상품만 반환, 미존재/비노출 상품은 404
+- Response: `{ item: ProductDetail, meta: { source: "DB" } }`
+
 ## Planned
-- GET /products/:id (상세)
 - GET /popular-keywords

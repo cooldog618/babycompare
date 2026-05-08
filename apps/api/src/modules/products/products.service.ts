@@ -1,10 +1,10 @@
-import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { ProductSource } from '@prisma/client';
-import { type ProductSearchSource, type SearchProductsResponse } from '@babycompare/shared';
+import { type ProductDetailResponse, type ProductSearchSource, type SearchProductsResponse } from '@babycompare/shared';
 import { NaverApiError, NaverConfigurationError, NaverNetworkError, NaverTimeoutError } from '../naver/naver.errors';
 import { NaverService } from '../naver/naver.service';
-import { mapProductEntity } from './products.mapper';
-import { type SearchProductsRequest } from './products.dto';
+import { mapProductDetailResponse, mapProductEntity } from './products.mapper';
+import { parseProductId, type SearchProductsRequest } from './products.dto';
 import { ProductsRepository } from './products.repository';
 
 @Injectable()
@@ -37,6 +37,25 @@ export class ProductsService {
       if (error instanceof NaverNetworkError) return this.fallback(params, 'NAVER_NETWORK_ERROR');
       if (error instanceof NaverApiError) return this.fallback(params, 'NAVER_API_ERROR');
       return this.fallback(params, 'UNKNOWN_NAVER_ERROR');
+    }
+  }
+
+  async getProductDetail(rawId: string): Promise<ProductDetailResponse> {
+    const id = parseProductId(rawId);
+
+    try {
+      const product = await this.repository.findVisibleById(id);
+      if (!product) {
+        throw new NotFoundException('product not found');
+      }
+
+      return mapProductDetailResponse(product);
+    } catch (error) {
+      if (error instanceof NotFoundException || error instanceof BadRequestException) {
+        throw error;
+      }
+
+      throw new InternalServerErrorException('failed to get product detail');
     }
   }
 
