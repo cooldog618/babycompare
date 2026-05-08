@@ -9,6 +9,10 @@ export function buildSearchRoute(query: string, sort: SearchSort = DEFAULT_SORT,
   return `/search?${params.toString()}`;
 }
 
+export function productDetailPath(id: string): string {
+  return `/products/${encodeURIComponent(id)}`;
+}
+
 export function parseSort(value?: string): SearchSort {
   if (value === 'price_asc' || value === 'price_desc' || value === 'relevance') {
     return value;

@@ -1,5 +1,4 @@
 # 09 Known Limitations
-- 프론트 상품 상세 페이지 미구현 (현재 placeholder만 제공)
 - 비교 기능 미구현
 - 최저가 표시 미구현
 - 정식 admin 미구현
