@@ -22,3 +22,5 @@
 | BC-MVP-005 | 홈/검색 페이지 구현 | Done |
 
 | BC-MVP-014 | 상품 상세 프론트 페이지 구현 | Done |
+
+| BC-MVP-007 | 비교 localStorage hook 구현 | Done |

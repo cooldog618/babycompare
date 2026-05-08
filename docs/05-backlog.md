@@ -10,7 +10,7 @@
 | BC-MVP-004 | M1 | API | 상품 상세 API 구현 | P1 | Done | M | `GET /products/:id` 상세 데이터 반환 |
 | BC-MVP-005 | M1 | Web | 홈/검색 페이지 구현 | P0 | Done | M | 홈/검색 화면 및 API 연동 완료 |
 | BC-MVP-006 | M1 | Web | 상품 카드 구현 | P1 | Todo | S | 가격/브랜드/링크 표시 |
-| BC-MVP-007 | M1 | Web | 비교 localStorage hook 구현 | P1 | Todo | M | 최대 5개 저장/해제 |
+| BC-MVP-007 | M1 | Web | 비교 localStorage hook 구현 | P1 | Done | M | 최대 5개 저장/해제 |
 | BC-MVP-008 | M1 | Web | 비교 페이지 구현 | P1 | Todo | M | 비교 테이블 표시 |
 | BC-MVP-009 | M1 | Shared/Web | 최저가 계산 및 표시 | P1 | Todo | S | 최저가 하이라이트 |
 | BC-MVP-010 | M1 | Web | 네이버 구매 링크 처리 | P2 | Todo | S | 외부 링크 정책 반영 |
