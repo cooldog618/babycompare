@@ -1,4 +1,15 @@
-import { buildCategoryPath } from '@babycompare/shared';
+function buildSeedCategoryPath(
+  category1?: string | null,
+  category2?: string | null,
+  category3?: string | null,
+  category4?: string | null
+): string | null {
+  const parts = [category1, category2, category3, category4]
+    .map((category) => category?.trim())
+    .filter((category): category is string => Boolean(category));
+
+  return parts.length > 0 ? parts.join(' > ') : null;
+}
 
 export interface DemoProductInput {
   externalId: string;
@@ -44,5 +55,5 @@ export const DEMO_PRODUCTS: DemoProductInput[] = categories.flatMap((category, c
 );
 
 export function getCategoryPath(input: Pick<DemoProductInput, 'category1' | 'category2' | 'category3' | 'category4'>) {
-  return buildCategoryPath(input.category1, input.category2, input.category3, input.category4);
+  return buildSeedCategoryPath(input.category1, input.category2, input.category3, input.category4);
 }
