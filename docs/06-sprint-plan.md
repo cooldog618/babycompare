@@ -19,3 +19,4 @@
 | BC-MVP-003 | 상품 검색 API 구현 | Done |
 
 | BC-MVP-004 | 상품 상세 API 구현 | Done |
+| BC-MVP-005 | 홈/검색 페이지 구현 | Done |
