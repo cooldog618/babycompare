@@ -26,7 +26,9 @@ export function useCompareList() {
   const syncStorage = useCallback((nextItems: CompareItem[]) => {
     try {
       localStorage.setItem(COMPARE_STORAGE_KEY, serializeCompareItems(nextItems));
-      window.dispatchEvent(new CustomEvent<CompareItem[]>(COMPARE_UPDATED_EVENT, { detail: nextItems }));
+      queueMicrotask(() => {
+        window.dispatchEvent(new CustomEvent<CompareItem[]>(COMPARE_UPDATED_EVENT, { detail: nextItems }));
+      });
     } catch {
       setLastError('비교 목록 저장에 실패했어요. 브라우저 설정을 확인해 주세요.');
     }
