@@ -67,14 +67,15 @@ export class ProductsRepository {
 
 
   async adminSummary() {
-    const [totalProducts, visibleProducts, bySourceRaw, recentSearches] = await this.prisma.$transaction([
+    const [totalProducts, visibleProducts, demoCount, naverCount, manualCount, recentSearches] = await this.prisma.$transaction([
       this.prisma.product.count(),
       this.prisma.product.count({ where: { isVisible: true } }),
-      this.prisma.product.groupBy({ by: ['source'], orderBy: { source: 'asc' }, _count: true }),
+      this.prisma.product.count({ where: { source: ProductSource.DEMO } }),
+      this.prisma.product.count({ where: { source: ProductSource.NAVER } }),
+      this.prisma.product.count({ where: { source: ProductSource.MANUAL } }),
       this.prisma.searchLog.findMany({ orderBy: { createdAt: 'desc' }, take: 10 })
     ]);
-    const bySource = { DEMO: 0, NAVER: 0, MANUAL: 0 };
-    for (const row of bySourceRaw) bySource[row.source] = row._count;
+    const bySource = { DEMO: demoCount, NAVER: naverCount, MANUAL: manualCount };
     return { totalProducts, visibleProducts, hiddenProducts: totalProducts - visibleProducts, bySource, recentSearches };
   }
 
