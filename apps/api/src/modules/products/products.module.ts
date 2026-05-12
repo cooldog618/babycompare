@@ -7,6 +7,7 @@ import { ProductsService } from './products.service';
 @Module({
   imports: [NaverModule],
   controllers: [ProductsController],
-  providers: [ProductsService, ProductsRepository]
+  providers: [ProductsService, ProductsRepository],
+  exports: [ProductsRepository]
 })
 export class ProductsModule {}
