@@ -7,13 +7,14 @@
     "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:api\"",
     "dev:web": "pnpm --filter @babycompare/web dev",
     "dev:api": "pnpm --filter @babycompare/api dev",
-    "build": "pnpm -r --sort build",
+    "build": "pnpm db:generate && pnpm -r --sort build",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm --filter @babycompare/shared build && pnpm -r typecheck",
-    "test": "pnpm --filter @babycompare/shared build && pnpm -r test",
+    "typecheck": "pnpm db:generate && pnpm --filter @babycompare/shared build && pnpm -r typecheck",
+    "test": "pnpm db:generate && pnpm --filter @babycompare/shared build && pnpm -r test",
     "db:migrate": "pnpm --filter @babycompare/api prisma migrate dev --name init",
     "db:seed": "pnpm --filter @babycompare/api prisma db seed",
-    "db:studio": "pnpm --filter @babycompare/api prisma studio"
+    "db:studio": "pnpm --filter @babycompare/api prisma studio",
+    "db:generate": "pnpm --filter @babycompare/api prisma generate"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
