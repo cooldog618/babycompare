@@ -25,3 +25,9 @@ export function withFallback(value: string | null | undefined, fallback: string)
   if (!value || !value.trim()) return fallback;
   return value;
 }
+
+export function formatSourceLabel(source: 'DEMO' | 'NAVER' | 'MANUAL'): string {
+  if (source === 'DEMO') return '데모';
+  if (source === 'NAVER') return '네이버';
+  return '수동';
+}
