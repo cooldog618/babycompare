@@ -10,9 +10,11 @@
 - BC-MVP-007 비교 localStorage hook 및 검색/상세 비교 추가/제거 버튼 연동 완료
 - BC-MVP-008 비교 페이지 구현 완료 (empty/1개/2개+ 상태 UI, 제거/전체 비우기, localStorage 연동)
 - BC-MVP-009 최저가 계산 및 표시 완료 (유효 가격 기준 최저가 배지/차액/요약)
+- BC-MVP-006 상품 카드 고도화 완료 (fallback/버튼 배치/접근성/모바일 가독성 개선)
+- BC-MVP-010 외부 구매 링크 정책 적용 완료 (새 탭 + noopener noreferrer + 안내 라벨)
+- 현재 단계: BC-MVP-011/012/013 후속 준비
 
 ## 다음 추천 작업
-1) BC-MVP-006 상품 카드 고도화
-2) BC-MVP-011 MVP 확인용 admin 화면 구현
-3) BC-MVP-012 테스트 보강
-4) BC-MVP-013 README 실행 가이드 정리
+1) BC-MVP-011 MVP 확인용 admin 화면 구현
+2) BC-MVP-012 테스트 보강
+3) BC-MVP-013 README 실행 가이드 정리
