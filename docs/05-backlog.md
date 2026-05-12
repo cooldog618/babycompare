@@ -14,7 +14,7 @@
 | BC-MVP-008 | M1 | Web | 비교 페이지 구현 | P1 | Done | M | empty/1개/2개+ 상태 비교 UI 및 제거/전체 비우기 동작 |
 | BC-MVP-009 | M1 | Shared/Web | 최저가 계산 및 표시 | P1 | Done | S | 최저가 하이라이트 |
 | BC-MVP-010 | M1 | Web | 네이버 구매 링크 처리 | P2 | Done | S | 외부 링크 정책 반영 |
-| BC-MVP-011 | M2 | Admin | MVP 확인용 admin 화면 구현 | P2 | Todo | M | 최소 조회/검증 UI |
+| BC-MVP-011 | M2 | Admin | MVP 확인용 admin 화면 구현 | P2 | Done | M | 최소 조회/검증 UI |
 | BC-MVP-012 | M2 | QA | 테스트 보강 | P1 | Todo | M | 단위/통합 테스트 추가 |
 | BC-MVP-013 | M2 | Docs | README 실행 가이드 정리 | P1 | Todo | S | 운영 기준 문서화 |
 

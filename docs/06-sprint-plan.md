@@ -30,3 +30,5 @@
 | BC-MVP-009 | 최저가 계산 및 표시 | Done |
 
 | BC-MVP-006 | 상품 카드 고도화 | Done |
+
+| BC-MVP-011 | MVP 확인용 admin 화면 구현 | Done |
