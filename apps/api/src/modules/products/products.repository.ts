@@ -70,11 +70,11 @@ export class ProductsRepository {
     const [totalProducts, visibleProducts, bySourceRaw, recentSearches] = await this.prisma.$transaction([
       this.prisma.product.count(),
       this.prisma.product.count({ where: { isVisible: true } }),
-      this.prisma.product.groupBy({ by: ['source'], _count: { _all: true } }),
+      this.prisma.product.groupBy({ by: ['source'], orderBy: { source: 'asc' }, _count: true }),
       this.prisma.searchLog.findMany({ orderBy: { createdAt: 'desc' }, take: 10 })
     ]);
     const bySource = { DEMO: 0, NAVER: 0, MANUAL: 0 };
-    for (const row of bySourceRaw) bySource[row.source] = row._count._all;
+    for (const row of bySourceRaw) bySource[row.source] = row._count;
     return { totalProducts, visibleProducts, hiddenProducts: totalProducts - visibleProducts, bySource, recentSearches };
   }
 
