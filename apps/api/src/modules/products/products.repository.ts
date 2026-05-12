@@ -65,6 +65,38 @@ export class ProductsRepository {
     return this.prisma.product.create({ data: { ...mapNaverCreate(item), source: ProductSource.NAVER, lastSyncedAt: new Date() } });
   }
 
+
+  async adminSummary() {
+    const [totalProducts, visibleProducts, demoCount, naverCount, manualCount, recentSearches] = await this.prisma.$transaction([
+      this.prisma.product.count(),
+      this.prisma.product.count({ where: { isVisible: true } }),
+      this.prisma.product.count({ where: { source: ProductSource.DEMO } }),
+      this.prisma.product.count({ where: { source: ProductSource.NAVER } }),
+      this.prisma.product.count({ where: { source: ProductSource.MANUAL } }),
+      this.prisma.searchLog.findMany({ orderBy: { createdAt: 'desc' }, take: 10 })
+    ]);
+    const bySource = { DEMO: demoCount, NAVER: naverCount, MANUAL: manualCount };
+    return { totalProducts, visibleProducts, hiddenProducts: totalProducts - visibleProducts, bySource, recentSearches };
+  }
+
+  async adminList(params: { q: string; source: 'ALL' | ProductSource; visible: 'all' | 'true' | 'false'; page: number; limit: number }) {
+    const where: Prisma.ProductWhereInput = {
+      ...(params.source !== 'ALL' ? { source: params.source } : {}),
+      ...(params.visible === 'all' ? {} : { isVisible: params.visible === 'true' }),
+      ...(params.q
+        ? { OR: ['title', 'brand', 'maker', 'categoryPath', 'seller', 'description'].map((field) => ({ [field]: { contains: params.q } })) }
+        : {})
+    };
+    const [items, total] = await this.prisma.$transaction([
+      this.prisma.product.findMany({ where, orderBy: [{ updatedAt: 'desc' }], skip: (params.page - 1) * params.limit, take: params.limit }),
+      this.prisma.product.count({ where })
+    ]);
+    return { items, total };
+  }
+
+  async adminFindById(id: string) { return this.prisma.product.findUnique({ where: { id } }); }
+  async adminUpdate(id: string, data: Prisma.ProductUpdateInput) { return this.prisma.product.update({ where: { id }, data }); }
+
   async insertSearchLog(query: string, sort: string, resultCount: number, source: ProductSource): Promise<void> {
     await this.prisma.searchLog.create({ data: { query, sort, resultCount, source } });
   }

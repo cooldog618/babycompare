@@ -26,3 +26,19 @@
 - `/search?q=유모차&sort=relevance&page=1` -> `GET /products/search?query=유모차&sort=relevance&page=1&limit=20`
 
 - Web detail page uses `/products/[id]` -> `GET /products/:id`.
+
+### GET /admin/summary
+- Status: Implemented
+- Auth: `x-admin-token` required
+
+### GET /admin/products
+- Status: Implemented
+- Auth: `x-admin-token` required
+
+### PATCH /admin/products/:id
+- Status: Implemented
+- Auth: `x-admin-token` required
+
+### PATCH /admin/products/:id/visibility
+- Status: Implemented
+- Auth: `x-admin-token` required
