@@ -16,7 +16,7 @@
 | BC-MVP-010 | M1 | Web | 네이버 구매 링크 처리 | P2 | Done | S | 외부 링크 정책 반영 |
 | BC-MVP-011 | M2 | Admin | MVP 확인용 admin 화면 구현 | P2 | Done | M | 최소 조회/검증 UI |
 | BC-MVP-012 | M2 | QA | 테스트 보강 + 검증 파이프라인 안정화 | P1 | In Progress | M | 핵심 API/Web/Admin 테스트 보강 + 로컬 검증 파이프라인 안정화 |
-| BC-MVP-013 | M2 | Docs | README 실행 가이드 정리 | P1 | Todo | S | 운영 기준 문서화 |
+| BC-MVP-013 | M2 | Docs | README 실행 가이드 정리 | P1 | Done | S | 실행/검증/MVP 시연 가이드가 README에 반영됨 |
 
 | BC-FIX-001 | M1 | Platform | seed 실행 오류 수정 | P0 | Done | S | seed 실행 안정화 |
 
