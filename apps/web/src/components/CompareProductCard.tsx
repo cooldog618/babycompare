@@ -1,16 +1,24 @@
 import Link from 'next/link';
-import type { CompareItem } from '../lib/compare';
+import type { ComparePriceState, CompareItem } from '../lib/compare';
 import { formatPrice, formatRating, formatReviewCount, withFallback } from '../lib/format';
 import { productDetailPath } from '../lib/routes';
 import { ExternalPurchaseLink } from './ExternalPurchaseLink';
+import { LowestPriceBadge } from './LowestPriceBadge';
+import { PriceDifference } from './PriceDifference';
 import { ProductImage } from './ProductImage';
 
-export function CompareProductCard({ item, onRemove }: { item: CompareItem; onRemove: (id: string) => void }) {
+export function CompareProductCard({ item, onRemove, priceState }: { item: CompareItem; onRemove: (id: string) => void; priceState: ComparePriceState }) {
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <ProductImage imageUrl={item.imageUrl} title={item.title} />
       <h3 className="mt-3 line-clamp-2 text-base font-semibold text-slate-900">{item.title}</h3>
-      <p className="mt-2 text-lg font-bold text-rose-600">{formatPrice(item.price)}</p>
+      <div className={`mt-2 rounded-md px-2 py-1 ${priceState.isLowest ? 'bg-emerald-50' : ''}`}>
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-bold text-rose-600">{formatPrice(item.price)}</p>
+          {priceState.isLowest && <LowestPriceBadge />}
+        </div>
+        {!priceState.isLowest && <PriceDifference differenceFromLowest={priceState.differenceFromLowest} />}
+      </div>
       <dl className="mt-3 space-y-2 text-sm">
         <div className="flex justify-between gap-3"><dt className="text-slate-500">브랜드</dt><dd className="text-right text-slate-800">{withFallback(item.brand, '브랜드 정보 없음')}</dd></div>
         <div className="flex justify-between gap-3"><dt className="text-slate-500">제조사</dt><dd className="text-right text-slate-800">{withFallback(item.maker, '제조사 정보 없음')}</dd></div>
