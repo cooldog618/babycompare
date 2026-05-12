@@ -19,6 +19,17 @@ export type CompareItem = {
   description?: string | null;
 };
 
+export type LowestPriceSummary = {
+  lowestPrice: number | null;
+  lowestItemIds: string[];
+  hasComparablePrice: boolean;
+};
+
+export type ComparePriceState = {
+  isLowest: boolean;
+  differenceFromLowest: number | null;
+};
+
 type ProductInput = Product | ProductDetail | ProductListItem | CompareItem;
 
 function sanitizeCompareItem(raw: unknown): CompareItem | null {
@@ -42,6 +53,52 @@ function sanitizeCompareItem(raw: unknown): CompareItem | null {
     rating: typeof item.rating === 'number' ? item.rating : null,
     reviewCount: typeof item.reviewCount === 'number' ? item.reviewCount : null,
     description: item.description ?? null
+  };
+}
+
+function isValidComparablePrice(price: number): boolean {
+  return Number.isFinite(price) && price > 0;
+}
+
+export function getLowestPriceSummary(items: CompareItem[]): LowestPriceSummary {
+  const validItems = items.filter((item) => isValidComparablePrice(item.price));
+
+  if (validItems.length === 0) {
+    return {
+      lowestPrice: null,
+      lowestItemIds: [],
+      hasComparablePrice: false
+    };
+  }
+
+  const lowestPrice = validItems.reduce((minimum, item) => Math.min(minimum, item.price), Number.POSITIVE_INFINITY);
+  const lowestItemIds = validItems.filter((item) => item.price === lowestPrice).map((item) => item.id);
+
+  return {
+    lowestPrice,
+    lowestItemIds,
+    hasComparablePrice: true
+  };
+}
+
+export function getComparePriceState(item: CompareItem, summary: LowestPriceSummary): ComparePriceState {
+  if (!summary.hasComparablePrice || summary.lowestPrice === null || !isValidComparablePrice(item.price)) {
+    return {
+      isLowest: false,
+      differenceFromLowest: null
+    };
+  }
+
+  if (summary.lowestItemIds.includes(item.id)) {
+    return {
+      isLowest: true,
+      differenceFromLowest: 0
+    };
+  }
+
+  return {
+    isLowest: false,
+    differenceFromLowest: Math.max(item.price - summary.lowestPrice, 0)
   };
 }
 

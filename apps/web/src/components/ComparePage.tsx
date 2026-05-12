@@ -1,5 +1,7 @@
 'use client';
 
+import { getComparePriceState, getLowestPriceSummary } from '../lib/compare';
+import { formatPrice } from '../lib/format';
 import { useCompareList } from '../hooks/useCompareList';
 import { CompareEmptyState } from './CompareEmptyState';
 import { CompareGuide } from './CompareGuide';
@@ -15,6 +17,7 @@ export function getCompareViewState(count: number): 'empty' | 'single' | 'multip
 export function ComparePage() {
   const { items, count, clear, removeItem, isLoaded } = useCompareList();
   const state = getCompareViewState(count);
+  const summary = getLowestPriceSummary(items);
 
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-8">
@@ -24,6 +27,13 @@ export function ComparePage() {
             <div>
               <h1 className="text-2xl font-bold text-slate-900">비교함</h1>
               <p className="mt-1 text-sm text-slate-600">최대 5개 상품을 담아 가격과 정보를 비교해 보세요.</p>
+              {state !== 'empty' && (
+                <p className="mt-2 text-sm text-slate-700">
+                  {summary.lowestPrice !== null
+                    ? `현재 비교 목록의 최저가는 ${formatPrice(summary.lowestPrice)}입니다.`
+                    : '가격 정보가 있는 상품이 없어 최저가를 계산할 수 없습니다.'}
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-2">
               <span className="rounded-full bg-slate-900 px-3 py-1 text-sm font-semibold text-white">{isLoaded ? `${count}개` : '-'}</span>
@@ -38,9 +48,9 @@ export function ComparePage() {
           <>
             <CompareGuide count={count} />
             <section className="grid gap-4 md:hidden">
-              {items.map((item) => <CompareProductCard key={item.id} item={item} onRemove={removeItem} />)}
+              {items.map((item) => <CompareProductCard key={item.id} item={item} onRemove={removeItem} priceState={getComparePriceState(item, summary)} />)}
             </section>
-            {state === 'multiple' && <CompareTable items={items} onRemove={removeItem} />}
+            {state === 'multiple' && <CompareTable items={items} onRemove={removeItem} summary={summary} />}
           </>
         )}
       </div>

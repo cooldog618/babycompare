@@ -26,3 +26,5 @@
 | BC-MVP-007 | 비교 localStorage hook 구현 | Done |
 
 | BC-MVP-008 | 비교 페이지 구현 | Done |
+
+| BC-MVP-009 | 최저가 계산 및 표시 | Done |

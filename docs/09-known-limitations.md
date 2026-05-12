@@ -1,5 +1,4 @@
 # 09 Known Limitations
-- 최저가 표시 미구현 (BC-MVP-009 예정)
 - 정식 admin 미구현
 - 네이버 API 오류/미설정 시 `/products/search`는 demo/manual DB fallback 동작
 

@@ -5,6 +5,12 @@ export function formatPrice(value: number | null | undefined): string {
   return `${new Intl.NumberFormat('ko-KR').format(value)}원`;
 }
 
+export function formatPriceDifference(value: number | null): string {
+  if (value === null) return '가격 비교 불가';
+  if (value <= 0) return '최저가';
+  return `최저가보다 ${new Intl.NumberFormat('ko-KR').format(value)}원 높음`;
+}
+
 export function formatReviewCount(value: number | null | undefined): string {
   if (typeof value !== 'number') return '리뷰 정보 없음';
   return `${new Intl.NumberFormat('ko-KR').format(value)}개 리뷰`;
