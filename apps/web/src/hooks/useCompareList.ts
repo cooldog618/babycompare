@@ -16,6 +16,7 @@ import {
 } from '../lib/compare';
 
 type ProductInput = Product | ProductDetail | ProductListItem | CompareItem;
+const COMPARE_UPDATED_EVENT = 'babycompare:compare-updated';
 
 export function useCompareList() {
   const [items, setItems] = useState<CompareItem[]>([]);
@@ -23,16 +24,39 @@ export function useCompareList() {
   const [lastError, setLastError] = useState<string | null>(null);
 
   const syncStorage = useCallback((nextItems: CompareItem[]) => {
-    try { localStorage.setItem(COMPARE_STORAGE_KEY, serializeCompareItems(nextItems)); } catch { setLastError('비교 목록 저장에 실패했어요. 브라우저 설정을 확인해 주세요.'); }
+    try {
+      localStorage.setItem(COMPARE_STORAGE_KEY, serializeCompareItems(nextItems));
+      window.dispatchEvent(new CustomEvent<CompareItem[]>(COMPARE_UPDATED_EVENT, { detail: nextItems }));
+    } catch {
+      setLastError('비교 목록 저장에 실패했어요. 브라우저 설정을 확인해 주세요.');
+    }
   }, []);
 
   useEffect(() => {
-    try { setItems(parseCompareItems(localStorage.getItem(COMPARE_STORAGE_KEY))); } catch { setItems([]); setLastError('비교 목록을 불러오지 못했어요.'); } finally { setIsLoaded(true); }
+    try {
+      setItems(parseCompareItems(localStorage.getItem(COMPARE_STORAGE_KEY)));
+    } catch {
+      setItems([]);
+      setLastError('비교 목록을 불러오지 못했어요.');
+    } finally {
+      setIsLoaded(true);
+    }
+
     const onStorage = (event: StorageEvent) => {
       if (event.key === COMPARE_STORAGE_KEY) setItems(parseCompareItems(event.newValue));
     };
+
+    const onCompareUpdated = (event: Event) => {
+      const custom = event as CustomEvent<CompareItem[]>;
+      setItems(custom.detail ?? []);
+    };
+
     window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
+    window.addEventListener(COMPARE_UPDATED_EVENT, onCompareUpdated as EventListener);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener(COMPARE_UPDATED_EVENT, onCompareUpdated as EventListener);
+    };
   }, []);
 
   const addItem = useCallback((product: ProductInput) => {
